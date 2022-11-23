@@ -1,0 +1,8 @@
+rootProject.name = 'lobby'
+
+include (
+  "centre",
+  "lobby-service",
+  "lobby-rest",
+  "workshop"
+)
