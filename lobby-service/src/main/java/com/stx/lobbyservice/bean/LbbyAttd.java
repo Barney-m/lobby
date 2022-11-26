@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.stx.centre.core.bean.BaseInfo;
+
 @Entity
 public class LbbyAttd extends BaseInfo {
 	

@@ -98,8 +98,8 @@ public class SysUsrCtx implements UsrCtx {
 	/**
 	 * @param usrAttrMap the usrAttrMap to set
 	 */
-	public void setUsrAttrMap(Map<String, Object> usrAttrMap) {
-		this.usrAttrMap = usrAttrMap;
+	public void setUsrAttrMap(String key, Object val) {
+		usrAttrMap.put(key, val);
 	}
 
 	/**

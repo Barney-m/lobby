@@ -1,4 +1,4 @@
-package com.stx.lobbyservice.bean;
+package com.stx.centre.core.bean;
 
 import java.util.Date;
 

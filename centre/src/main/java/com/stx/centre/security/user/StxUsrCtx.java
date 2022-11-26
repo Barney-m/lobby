@@ -23,7 +23,7 @@ import com.stx.workshop.exception.SvcException;
 
 /**
  * @author Ken Shen
- *
+ * @version 1.0
  */
 public class StxUsrCtx implements UsrCtx, Serializable{
 	private static final long serialVersionUID = 5752788078420473251L;

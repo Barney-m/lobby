@@ -24,6 +24,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	
 	implementation 'org.json:json:20220924'
+	implementation 'org.apache.commons:commons-lang3:3.0'
+	implementation 'org.owasp.esapi:esapi:2.5.0.0'
 	
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
