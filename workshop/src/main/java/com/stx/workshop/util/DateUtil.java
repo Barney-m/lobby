@@ -1,6 +1,7 @@
 package com.stx.workshop.util;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -129,5 +130,9 @@ public final class DateUtil {
 		cal.add(Calendar.YEAR, -x);
 		
 		return new Date(cal.getTime().getTime());
+	}
+	
+	public static String parseSqlDate(Date d) {
+		return YYYY_MM_DD_FMT.format(d);
 	}
 }

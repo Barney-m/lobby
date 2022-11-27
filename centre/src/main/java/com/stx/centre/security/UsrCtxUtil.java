@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.stx.centre.security.user.SysUsrCtx;
 import com.stx.workshop.util.PropertyUtil;
 
-
 public final class UsrCtxUtil {
 	public static final String SYSTEM = "system";
 	

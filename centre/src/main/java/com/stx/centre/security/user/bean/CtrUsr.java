@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.stx.centre.core.bean.BaseInfo;
 
@@ -29,6 +31,7 @@ public class CtrUsr extends BaseInfo{
 	
 	protected boolean isFrtIdc;
 
+	@JsonGetter("user_id")
 	public String getUsrId() {
 		return usrId;
 	}
@@ -64,7 +67,12 @@ public class CtrUsr extends BaseInfo{
 		this.addr = addr;
 	}
 
+	@JsonGetter("dob")
 	public Date getDob() {
+		if (StringUtils.isBlank(dob.toString())) {
+			return null;
+		}
+
 		return dob;
 	}
 

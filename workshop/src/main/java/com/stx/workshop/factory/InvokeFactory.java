@@ -6,8 +6,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.json.JSONObject;
@@ -23,9 +25,7 @@ import com.stx.workshop.exception.SvcException;
 
 @Component
 public class InvokeFactory {
-	@SuppressWarnings("unchecked")
 	public <T> T invokePost(ReqMap reqMap, String ivkUri, String cnttT, Class<T> cls) {
-		Map<String, String> postMap = new HashMap<>();
 
     	// Prepare HTTP Client
     	HttpClient httpClt = HttpClient.newHttpClient();
@@ -55,6 +55,8 @@ public class InvokeFactory {
      * @return {@link HttpRequest.BodyPublisher}
      */
     private HttpRequest.BodyPublisher getParamsUrlEncoded(Map<String, Object> params) {
+    	params.values().removeAll(Collections.singleton(null));
+    	
     	String urlEncoded = params.entrySet()
 				                .stream()
 				                .map(e -> e.getKey() + "=" + URLEncoder.encode(e.getValue().toString(), StandardCharsets.UTF_8))

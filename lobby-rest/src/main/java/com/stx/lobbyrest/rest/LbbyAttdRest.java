@@ -12,6 +12,7 @@ import com.stx.lobbyrest.constant.LbbyRestConst;
 import com.stx.lobbyservice.bean.LbbyAttd;
 import com.stx.lobbyservice.svc.LbbyAttdSvc;
 import com.stx.workshop.annotation.StxAuth;
+import com.stx.workshop.util.OpUtil;
 
 
 @RestController
@@ -31,6 +32,6 @@ public class LbbyAttdRest {
 	public BigDecimal findAllUsr() {
 		BigDecimal a = new BigDecimal("10");
 		BigDecimal b = new BigDecimal("20");
-		return a.pow(2);
+		return OpUtil.add(a, b);
 	}
 }

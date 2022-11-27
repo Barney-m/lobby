@@ -1,8 +1,5 @@
 package com.stx.centre.security.interceptor;
 
-import java.util.Enumeration;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,7 +20,7 @@ import com.stx.workshop.interceptor.LoggerInterceptor;
 @Component
 public class UsrCtxInterceptor implements HandlerInterceptor {
 
-	private static Logger log = LoggerFactory.getLogger(LoggerInterceptor.class);
+	private static Logger log = LoggerFactory.getLogger(UsrCtxInterceptor.class);
 	
 	private static ThreadLocal<Long> startTime = new ThreadLocal<>();
 	
@@ -52,7 +49,7 @@ public class UsrCtxInterceptor implements HandlerInterceptor {
 	    }
 	    
 	    String[] authHdr = StringUtils.split(request.getHeader(RestConst.REQ_HDR_AUTH), " ");
-	    if (!CollectionUtils.sizeIsEmpty(authHdr) && authHdr.length >= 2 && StringUtils.isNotBlank(authHdr[1])) {
+	    if (null != authHdr && authHdr.length >= 2 && StringUtils.isNotBlank(authHdr[1])) {
 	    	usrCtx.setUsrAttrMap("acsTkn", authHdr[1]);
 	    }
 	    
