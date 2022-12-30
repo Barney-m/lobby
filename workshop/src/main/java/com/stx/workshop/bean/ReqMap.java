@@ -9,6 +9,7 @@ public class ReqMap implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -72993854673485121L;
+
 	protected Map<String, Object> reqMap;
 	
 	public Map<String, Object> getReqMap() {

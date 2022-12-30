@@ -16,6 +16,7 @@ import com.stx.centre.security.user.svc.CtrUsrSvc;
 
 @Service
 public class CtrUsrSvcImpl implements CtrUsrSvc {
+
 	@PersistenceContext
 	private EntityManager em;
 	

@@ -2,20 +2,11 @@ package com.stx.centre.security.web.bean;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.stx.centre.security.user.bean.CtrUsr;
+import com.stx.workshop.rest.ErrRsp;
 
-public class CtrIamLoginRsp {
-
-	protected String status;
+public class CtrIamLoginRsp extends ErrRsp {
 	
 	protected CtrLoginRsp loginRsp;
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 
 	@JsonGetter("result")
 	public CtrLoginRsp getLoginRsp() {
