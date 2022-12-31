@@ -6,13 +6,13 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class CtrSecWebConfig implements WebMvcConfigurer {
+public class CentreSecurityWebConfig implements WebMvcConfigurer {
 	
 	@Autowired
-    UsrCtxInterceptor usrCtxInterceptor;
+    UserContextInterceptor userContextInterceptor;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-	    registry.addInterceptor(usrCtxInterceptor).addPathPatterns("/**");
+	    registry.addInterceptor(userContextInterceptor).addPathPatterns("/**");
 	}
 }

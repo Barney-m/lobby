@@ -3,7 +3,7 @@ package com.stx.centre.security.user.principals;
 import java.io.Serializable;
 import java.security.Principal;
 
-public class GrpPrp implements Principal, Serializable {
+public class GroupPrincipal implements Principal, Serializable {
 
 	/**
 	 * serialVersionUID
@@ -13,15 +13,15 @@ public class GrpPrp implements Principal, Serializable {
 	/**
 	 * Group Code
 	 */
-	protected String grpCode;
+	protected String groupCode;
 	
 	/**
 	 * Initialize Group Principal
 	 * 
-	 * @param grpCode - Group Code
+	 * @param groupCode - Group Code
 	 */
-	public GrpPrp(String grpCode) {
-		this.grpCode = grpCode;
+	public GroupPrincipal(String groupCode) {
+		this.groupCode = groupCode;
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class GrpPrp implements Principal, Serializable {
 	 */
 	@Override
 	public int hashCode() {
-		return 31 + ((null == grpCode) ? 0 : grpCode.hashCode());
+		return 31 + ((null == groupCode) ? 0 : groupCode.hashCode());
 	}
 	
 	/**
@@ -43,12 +43,12 @@ public class GrpPrp implements Principal, Serializable {
 
 		if (getClass() != obj.getClass()) return false;
 
-		GrpPrp other = (GrpPrp) obj;
-		if (null == grpCode) {
-			if (null != other.grpCode) {
+		GroupPrincipal other = (GroupPrincipal) obj;
+		if (null == groupCode) {
+			if (null != other.groupCode) {
 				return false;
 			}
-		} else if (!grpCode.equals(other.grpCode)) {
+		} else if (!groupCode.equals(other.groupCode)) {
 			return false;
 		}
 		
@@ -58,10 +58,10 @@ public class GrpPrp implements Principal, Serializable {
 	/**
 	 * see {@link java.security.Principal#getName()}
 	 * 
-	 * @return grpCode - Group Code
+	 * @return groupCode - Group Code
 	 */
 	@Override
 	public String getName() {
-		return grpCode;
+		return groupCode;
 	}
 }

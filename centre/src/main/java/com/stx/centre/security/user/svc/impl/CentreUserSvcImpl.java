@@ -10,20 +10,20 @@ import javax.security.auth.login.LoginException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.stx.centre.security.user.bean.CtrUsr;
-import com.stx.centre.security.user.repo.CtrUsrRepo;
-import com.stx.centre.security.user.svc.CtrUsrSvc;
+import com.stx.centre.security.user.bean.CentreUser;
+import com.stx.centre.security.user.repo.CentreUserRepo;
+import com.stx.centre.security.user.svc.CentreUserSvc;
 
 @Service
-public class CtrUsrSvcImpl implements CtrUsrSvc {
+public class CentreUserSvcImpl implements CentreUserSvc {
 
 	@PersistenceContext
 	private EntityManager em;
 	
 	@Autowired
-	private CtrUsrRepo ctrUsrRepo;
+	private CentreUserRepo centreUserRepo;
 	
-	public List<CtrUsr> list() {
-		return ctrUsrRepo.findAll();
+	public List<CentreUser> list() {
+		return centreUserRepo.findAll();
 	}
 }

@@ -15,16 +15,16 @@ import com.stx.centre.security.oauth2.config.AuthenticationDetails;
 import com.stx.workshop.factory.ClassObjFactory;
 
 public class AuthenticationDetailsProcessor implements AuthenticationDetailsSource<HttpServletRequest, AuthenticationDetails> {
-	public static final String REQ_PMR_FRC_LOGOUT = "frcLogout";
+	public static final String REQ_PMR_FRC_LOGOUT = "forceLogout";
 	
-	private final String[] adlPmrNms;
+	private final String[] additionalParamNames;
 	
-	private final String[] loginOptPmrNms;
+	private final String[] loginOptionParamNames;
 	
 	public AuthenticationDetailsProcessor() {
 		super();
-		this.adlPmrNms = null;
-		this.loginOptPmrNms = null;
+		this.additionalParamNames = null;
+		this.loginOptionParamNames = null;
 	}
 	
 	@Override
@@ -36,38 +36,38 @@ public class AuthenticationDetailsProcessor implements AuthenticationDetailsSour
 			processor.setRemoteAddr(req.getRemoteAddr());
 		}
 		
-		String frcLogoutIdc = req.getParameter(REQ_PMR_FRC_LOGOUT);
-		processor.setFrcLogout("Y".equals(frcLogoutIdc));
+		String forceLogoutIdc = req.getParameter(REQ_PMR_FRC_LOGOUT);
+		processor.setForceLogout("Y".equals(forceLogoutIdc));
 		
-		HttpSession sss = req.getSession(false);
-		processor.setSssId(sss.getId());
+		HttpSession session = req.getSession(false);
+		processor.setSessionId(session.getId());
 		
-		List<String> reqPmrNms = Collections.list(req.getParameterNames());
+		List<String> reqParamNames = Collections.list(req.getParameterNames());
 		
-		processor.setAdlPmrs(Collections.unmodifiableMap(extractedFromParameter(req, this.adlPmrNms, reqPmrNms)));
+		processor.setAdditionalParams(Collections.unmodifiableMap(extractedFromParameter(req, this.additionalParamNames, reqParamNames)));
 		
-		Map<String, String> loginOpts = extractedFromParameter(req, this.loginOptPmrNms, reqPmrNms);
+		Map<String, String> loginOptions = extractedFromParameter(req, this.loginOptionParamNames, reqParamNames);
 		
-		if (processor.isFrcLogout()) {
-			loginOpts.put("autoLogout", "Y");
+		if (processor.getIsForceLogout()) {
+			loginOptions.put("autoLogout", "Y");
 		}
 		
-		loginOpts.put("ipAddr", processor.getRemoteAddr());
-		processor.setLoginOpts(Collections.unmodifiableMap(loginOpts));
+		loginOptions.put("ipAddress", processor.getRemoteAddr());
+		processor.setLoginOptions(Collections.unmodifiableMap(loginOptions));
 		return processor;
 	}
 	
-	private Map<String, String> extractedFromParameter(HttpServletRequest req, String[] pmrNms, List<String> reqPmrNms) {
-		Map<String, String> pmrs = new HashMap<>();
+	private Map<String, String> extractedFromParameter(HttpServletRequest req, String[] paramNames, List<String> reqParamNames) {
+		Map<String, String> params = new HashMap<>();
 		
-		if (null != pmrNms) {
-			for (String pmr : pmrNms) {
-				if (reqPmrNms.contains(pmr)) {
-					pmrs.put(pmr, req.getParameter(pmr));
+		if (null != paramNames) {
+			for (String param : paramNames) {
+				if (reqParamNames.contains(param)) {
+					params.put(param, req.getParameter(param));
 				}
 			}
 		}
 		
-		return pmrs;
+		return params;
 	}
 }

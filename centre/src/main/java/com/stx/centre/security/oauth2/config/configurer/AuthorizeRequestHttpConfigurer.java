@@ -18,7 +18,7 @@ public class AuthorizeRequestHttpConfigurer extends
 	public void init(HttpSecurity http) throws Exception {
 		http.authorizeRequests(r -> r.antMatchers(getSecurityPermitPaths())
 				.permitAll()
-				.antMatchers("stx-rest/public/sss")
+				.antMatchers("stx-rest/public/session")
 				.authenticated()
 				.anyRequest()
 				.authenticated());

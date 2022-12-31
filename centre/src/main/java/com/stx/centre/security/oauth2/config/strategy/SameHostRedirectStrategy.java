@@ -17,10 +17,10 @@ public class SameHostRedirectStrategy implements RedirectStrategy {
 	
 	@Override
 	public void sendRedirect(HttpServletRequest req, HttpServletResponse res, String url) throws IOException {
-		String rdrtUrl = UrlUtil.getAbsUrl(req, url);
+		String redirectUrl = UrlUtil.getAbsUrl(req, url);
 		if (LOG.isDebugEnabled()) {
-			LOG.debug("Redirecting to '{}'", LogUtil.encode(rdrtUrl));
+			LOG.debug("Redirecting to '{}'", LogUtil.encode(redirectUrl));
 		}
-		res.sendRedirect(rdrtUrl);
+		res.sendRedirect(redirectUrl);
 	}
 }

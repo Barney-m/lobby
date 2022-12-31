@@ -1,6 +1,6 @@
 package com.stx.centre.security.oauth2.web.rest.constant;
 
-public class CtrAuthRestConst {
+public class CentreAuthRestConst {
 	public static final String CTR_ENDPOINT = "/centre";
 	
 	public static final String CTR_AUTH_ENDPOINT = CTR_ENDPOINT + "/auth";

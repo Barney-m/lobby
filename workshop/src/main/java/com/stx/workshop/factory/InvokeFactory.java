@@ -25,24 +25,24 @@ import com.stx.workshop.exception.SvcException;
 
 @Component
 public class InvokeFactory {
-	public <T> T invokePost(ReqMap reqMap, String ivkUri, String cnttT, Class<T> cls) {
+	public <T> T invokePost(ReqMap reqMap, String invokeUri, String contentType, Class<T> clazz) {
 
     	// Prepare HTTP Client
-    	HttpClient httpClt = HttpClient.newHttpClient();
+    	HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpReq = HttpRequest.newBuilder()
-        									.uri(URI.create(ivkUri))
+        									.uri(URI.create(invokeUri))
         									.header(RestConst.REQ_HDR_ACPT, RestConst.ACPT_TYPE_JSON)
-        									.header(RestConst.REQ_HDR_CNTT_T, cnttT)
+        									.header(RestConst.REQ_HDR_CNTT_T, contentType)
         									.POST(getParamsUrlEncoded(reqMap.getReqMap()))
         									.build();
 
         try {
         	// Invoke API
-        	HttpResponse<String> httpRsp = httpClt.send(httpReq, HttpResponse.BodyHandlers.ofString());
+        	HttpResponse<String> httpRsp = httpClient.send(httpReq, HttpResponse.BodyHandlers.ofString());
         	
         	// Get And Response Verify Result
         	ObjectMapper mapper = new ObjectMapper();
-        	return (T) mapper.readValue(httpRsp.body(), cls);
+        	return (T) mapper.readValue(httpRsp.body(), clazz);
         } catch (Exception e) {
         	throw new SvcException(e.getMessage());
         }

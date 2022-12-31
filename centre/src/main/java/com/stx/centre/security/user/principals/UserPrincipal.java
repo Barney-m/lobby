@@ -3,31 +3,31 @@ package com.stx.centre.security.user.principals;
 import java.io.Serializable;
 import java.security.Principal;
 
-public class UsrPrp implements Principal, Serializable {
+public class UserPrincipal implements Principal, Serializable {
 
 	private static final long serialVersionUID = 8379047605858649700L;
 
-	private final String usrId;
+	private final String userId;
 	
 	private String email;
 	
-	private String fullNm;
+	private String fullName;
 	
 	
-	public UsrPrp(String id, String email) {
-		this.usrId = id;
+	public UserPrincipal(String id, String email) {
+		this.userId = id;
 		this.email = email;
 	}
 	
-	public UsrPrp(String id, String email, String fullNm) {
-		this.usrId = id;
+	public UserPrincipal(String id, String email, String fullName) {
+		this.userId = id;
 		this.email = email;
-		this.fullNm = fullNm;
+		this.fullName = fullName;
 	}
 	
 	@Override
 	public int hashCode() {
-		return 31 + ((null == usrId) ? 0 : usrId.hashCode());
+		return 31 + ((null == userId) ? 0 : userId.hashCode());
 	}
 	
 	/**
@@ -41,12 +41,12 @@ public class UsrPrp implements Principal, Serializable {
 
 		if (getClass() != obj.getClass()) return false;
 
-		UsrPrp other = (UsrPrp) obj;
-		if (null == usrId) {
-			if (null != other.usrId) {
+		UserPrincipal other = (UserPrincipal) obj;
+		if (null == userId) {
+			if (null != other.userId) {
 				return false;
 			}
-		} else if (!usrId.equals(other.usrId)) {
+		} else if (!userId.equals(other.userId)) {
 			return false;
 		}
 		
@@ -60,14 +60,14 @@ public class UsrPrp implements Principal, Serializable {
 	 */
 	@Override
 	public String getName() {
-		return usrId;
+		return userId;
 	}
 	
 	public String getEmail() {
 		return email;
 	}
 	
-	public String getFullNm() {
-		return fullNm;
+	public String getFullName() {
+		return fullName;
 	}
 }

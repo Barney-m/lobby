@@ -12,45 +12,45 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.stx.centre.security.UsrCtxUtil;
-import com.stx.centre.security.user.SysUsrCtx;
+import com.stx.centre.security.UserContextUtil;
+import com.stx.centre.security.user.SystemUserContext;
 import com.stx.workshop.constant.RestConst;
 import com.stx.workshop.interceptor.LoggerInterceptor;
 
 @Component
-public class UsrCtxInterceptor implements HandlerInterceptor {
+public class UserContextInterceptor implements HandlerInterceptor {
 
-	private static Logger log = LoggerFactory.getLogger(UsrCtxInterceptor.class);
+	private static Logger log = LoggerFactory.getLogger(UserContextInterceptor.class);
 	
 	private static ThreadLocal<Long> startTime = new ThreadLocal<>();
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 	    
-		String usrId = request.getHeader("usrId");
+		String userId = request.getHeader("userId");
 
 	    String email = request.getHeader("email");
 	    if (null == email) {
-	    	email = UsrCtxUtil.SYSTEM_EMAIL;
+	    	email = UserContextUtil.SYSTEM_EMAIL;
 	    }
 	    
 	    String reqId = request.getHeader("reqId");
 	    
-	    String remoteAddr = request.getHeader("ipAddr");
+	    String remoteAddr = request.getHeader("ipAddress");
 	    if (StringUtils.isBlank(remoteAddr)) {
 	    	remoteAddr = request.getRemoteAddr();
 	    }
 	    
-	    SysUsrCtx usrCtx = new SysUsrCtx(email, null, remoteAddr);
-	    UsrCtxUtil.setUsrCtx(usrCtx);
+	    SystemUserContext userContext = new SystemUserContext(email, null, remoteAddr);
+	    UserContextUtil.setUserContext(userContext);
 	    
 	    if (StringUtils.isNotBlank(reqId)) {
-	    	UsrCtxUtil.setThrId(reqId);
+	    	UserContextUtil.setThreadId(reqId);
 	    }
 	    
-	    String[] authHdr = StringUtils.split(request.getHeader(RestConst.REQ_HDR_AUTH), " ");
-	    if (null != authHdr && authHdr.length >= 2 && StringUtils.isNotBlank(authHdr[1])) {
-	    	usrCtx.setUsrAttrMap("acsTkn", authHdr[1]);
+	    String[] authHeader = StringUtils.split(request.getHeader(RestConst.REQ_HDR_AUTH), " ");
+	    if (null != authHeader && authHeader.length >= 2 && StringUtils.isNotBlank(authHeader[1])) {
+	    	userContext.setUserAttrMap("accessToken", authHeader[1]);
 	    }
 	    
 	    // TODO: App Context Map Logic
@@ -59,8 +59,8 @@ public class UsrCtxInterceptor implements HandlerInterceptor {
 	    
 	    // JBOSS Logging
 	    MDC.put("reqId", reqId);
-	    MDC.put("emai", email);
-	    MDC.put("ipAddr", remoteAddr);
+	    MDC.put("email", email);
+	    MDC.put("ipAddress", remoteAddr);
 	    MDC.put("uri", request.getRequestURI());
 	    
 	    startTime.set(System.currentTimeMillis());
@@ -73,7 +73,7 @@ public class UsrCtxInterceptor implements HandlerInterceptor {
 	    try {
 	    	long elapsed = System.currentTimeMillis() - startTime.get().longValue();
 	    	log.debug(elapsed + " ms");
-	    	UsrCtxUtil.setUsrCtx(null);
+	    	UserContextUtil.setUserContext(null);
 	    } finally {
 	    	// Kills Thread
 	    	startTime.remove();

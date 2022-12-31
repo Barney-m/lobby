@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import com.stx.centre.security.oauth2.config.strategy.SameHostRedirectStrategy;
 
 public class LoginUrlAuthenticationEntryPointProcessor extends LoginUrlAuthenticationEntryPoint {
-	RedirectStrategy rdrtSttg = new SameHostRedirectStrategy();
+	RedirectStrategy redirectStrategy = new SameHostRedirectStrategy();
 	
 	public LoginUrlAuthenticationEntryPointProcessor(String loginFormUrl) {
 		super(loginFormUrl);
@@ -25,7 +25,7 @@ public class LoginUrlAuthenticationEntryPointProcessor extends LoginUrlAuthentic
 	@Override
 	public void commence(HttpServletRequest req, HttpServletResponse res,
 			AuthenticationException authEx) throws IOException, ServletException {
-		String rdrtUrl = buildRedirectUrlToLoginPage(req, res, authEx);
-		rdrtSttg.sendRedirect(req, res, rdrtUrl);
+		String redirectUrl = buildRedirectUrlToLoginPage(req, res, authEx);
+		redirectStrategy.sendRedirect(req, res, redirectUrl);
 	}
 }

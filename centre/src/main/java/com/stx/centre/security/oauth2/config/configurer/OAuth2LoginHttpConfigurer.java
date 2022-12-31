@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.context.SecurityContextRepository;
 
-import com.stx.centre.security.oauth2.config.filter.LoginPgRdrtFtr;
+import com.stx.centre.security.oauth2.config.filter.LoginPageRedirectFilter;
 import com.stx.centre.security.oauth2.config.processor.AuthenticationDetailsProcessor;
 import com.stx.centre.security.oauth2.config.processor.LoginUrlAuthenticationEntryPointProcessor;
 import com.stx.workshop.util.PropertyUtil;
@@ -26,7 +26,7 @@ public class OAuth2LoginHttpConfigurer extends
 	protected SecurityContextRepository securityContextRepository;
 	
 	@Autowired
-	protected LoginPgRdrtFtr loginPageRedirectFilter;
+	protected LoginPageRedirectFilter loginPageRedirectFilter;
 	
 	@Autowired
 	protected AuthenticationDetailsProcessor authenticationDetailsProcessor;

@@ -11,22 +11,22 @@ public class AuthenticationDetails implements Serializable {
 	 */
 	private static final long serialVersionUID = -6908017209569430422L;
 
-	private boolean frcLogout;
+	private boolean forceLogout;
 	
 	private String remoteAddr;
 	
-	private String sssId;
+	private String sessionId;
 	
-	private Map<String, String> adlPmrs = new HashMap<>();
+	private Map<String, String> additionalParams = new HashMap<>();
 	
-	private Map<String, String> loginOpts = new HashMap<>();
+	private Map<String, String> loginOptions = new HashMap<>();
 
-	public boolean isFrcLogout() {
-		return frcLogout;
+	public boolean getIsForceLogout() {
+		return forceLogout;
 	}
 
-	public void setFrcLogout(boolean frcLogout) {
-		this.frcLogout = frcLogout;
+	public void setForceLogout(boolean forceLogout) {
+		this.forceLogout = forceLogout;
 	}
 
 	public String getRemoteAddr() {
@@ -37,28 +37,28 @@ public class AuthenticationDetails implements Serializable {
 		this.remoteAddr = remoteAddr;
 	}
 
-	public String getSssId() {
-		return sssId;
+	public String getSessionId() {
+		return sessionId;
 	}
 
-	public void setSssId(String sssId) {
-		this.sssId = sssId;
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
-	public Map<String, String> getAdlPmrs() {
-		return adlPmrs;
+	public Map<String, String> getAdditionalParams() {
+		return additionalParams;
 	}
 
-	public void setAdlPmrs(Map<String, String> adlPmrs) {
-		this.adlPmrs = adlPmrs;
+	public void setAdditionalParams(Map<String, String> additionalParams) {
+		this.additionalParams = additionalParams;
 	}
 
-	public Map<String, String> getLoginOpts() {
-		return loginOpts;
+	public Map<String, String> getLoginOptions() {
+		return loginOptions;
 	}
 
-	public void setLoginOpts(Map<String, String> loginOpts) {
-		this.loginOpts = loginOpts;
+	public void setLoginOptions(Map<String, String> loginOptions) {
+		this.loginOptions = loginOptions;
 	}
 	
 	

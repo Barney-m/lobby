@@ -19,20 +19,20 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.stx.centre.security.oauth2.config.strategy.SameHostRedirectStrategy;
 import com.stx.workshop.util.PropertyUtil;
 
-public class LoginPgRdrtFtr extends OncePerRequestFilter {
-	private RequestMatcher loginPgReqMtch;
+public class LoginPageRedirectFilter extends OncePerRequestFilter {
+	private RequestMatcher loginPageRequestMatch;
 	
-	private RedirectStrategy rdrtSttg;
+	private RedirectStrategy redirectStrategy;
 	
 	// Server Rendering
-	public LoginPgRdrtFtr() {
+	public LoginPageRedirectFilter() {
 		if (PropertyUtil.isCustomURL()) {
-			rdrtSttg = new SameHostRedirectStrategy();
+			redirectStrategy = new SameHostRedirectStrategy();
 		} else {
-			rdrtSttg = new DefaultRedirectStrategy();
+			redirectStrategy = new DefaultRedirectStrategy();
 		}
 		
-		loginPgReqMtch = new OrRequestMatcher(new AntPathRequestMatcher("/login"));
+		loginPageRequestMatch = new OrRequestMatcher(new AntPathRequestMatcher("/login"));
 	}
 	
 	/**
@@ -41,16 +41,16 @@ public class LoginPgRdrtFtr extends OncePerRequestFilter {
 	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res,
-			FilterChain ftrChain) throws ServletException, IOException {
-		if (loginPgReqMtch.matches(req)) {
+			FilterChain filterChain) throws ServletException, IOException {
+		if (loginPageRequestMatch.matches(req)) {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			
 			if (null != auth && auth.isAuthenticated()) {
-				rdrtSttg.sendRedirect(req, res, "/home");
+				redirectStrategy.sendRedirect(req, res, "/home");
 				return;
 			}
 		}
 		
-		ftrChain.doFilter(req, res);
+		filterChain.doFilter(req, res);
 	}
 }

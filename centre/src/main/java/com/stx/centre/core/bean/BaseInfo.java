@@ -13,103 +13,103 @@ public class BaseInfo {
 	/**
 	 * Modified Count
 	 */
-	@Column(name = "mdf_cnt", nullable = false)
-	protected Long mdfCnt;
+	@Column(name = "modified", nullable = false)
+	protected Long modified;
 	
 	/**
 	 * Created By
 	 */
-	@Column(name = "crt_by", nullable = false)
-	protected String crtBy;
+	@Column(name = "created_by", nullable = false)
+	protected String createdBy;
 	
 	/**
 	 * Created At
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "crt_at", nullable = false)
-	protected Date crtAt;
+	@Column(name = "created_at", nullable = false)
+	protected Date createdAt;
 	
 	/**
 	 * Updated By
 	 */
-	@Column(name = "upd_by", nullable = false)
-	protected String updBy;
+	@Column(name = "updated_by", nullable = false)
+	protected String updatedBy;
 	
 	/**
 	 * Updated At
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "upd_at", nullable = false)
-	protected Date updAt;
+	@Column(name = "updated_at", nullable = false)
+	protected Date updatedAt;
 
 	/**
-	 * @return the mdfCnt
+	 * @return the modified
 	 */
-	public Long getMdfCnt() {
-		return mdfCnt;
+	public Long getModified() {
+		return modified;
 	}
 
 	/**
-	 * @param mdfCnt the mdfCnt to set
+	 * @param modified the modified to set
 	 */
-	public void setMdfCnt(Long mdfCnt) {
-		this.mdfCnt = mdfCnt;
+	public void setModified(Long modified) {
+		this.modified = modified;
 	}
 
 	/**
-	 * @return the crtBy
+	 * @return the createdBy
 	 */
-	public String getCrtBy() {
-		return crtBy;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
 	/**
-	 * @param crtBy the crtBy to set
+	 * @param createdBy the createdBy to set
 	 */
-	public void setCrtBy(String crtBy) {
-		this.crtBy = crtBy;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	/**
-	 * @return the crtAt
+	 * @return the createdAt
 	 */
-	public Date getCrtAt() {
-		return crtAt;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
 	/**
-	 * @param crtAt the crtAt to set
+	 * @param createdAt the createdAt to set
 	 */
-	public void setCrtAt(Date crtAt) {
-		this.crtAt = crtAt;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	/**
-	 * @return the updBy
+	 * @return the updatedBy
 	 */
-	public String getUpdBy() {
-		return updBy;
+	public String getUpdatedBy() {
+		return updatedBy;
 	}
 
 	/**
-	 * @param updBy the updBy to set
+	 * @param updatedBy the updatedBy to set
 	 */
-	public void setUpdBy(String updBy) {
-		this.updBy = updBy;
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	/**
-	 * @return the updAt
+	 * @return the updatedAt
 	 */
-	public Date getUpdAt() {
-		return updAt;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
 	/**
-	 * @param updAt the updAt to set
+	 * @param updatedAt the updatedAt to set
 	 */
-	public void setUpdAt(Date updAt) {
-		this.updAt = updAt;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 }
