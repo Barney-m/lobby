@@ -66,7 +66,7 @@ public class CentreAuthMntSvcImpl implements CentreAuthMntSvc {
 		reqParamMap.put("password", req.getPassword());
 		reqParamMap.put("fullName", req.getFullName());
 		reqParamMap.put("address", req.getAddress());
-		reqParamMap.put("dob", null != req.getDob()? DateUtil.parseSqlDate(req.getDob()) : null);
+		reqParamMap.put("dob", null != req.getDob() ? DateUtil.parseSqlDate(req.getDob()) : null);
 		reqParamMap.put("mobileNo", req.getMobileNo());
 		reqParamMap.put("rank", null);
 		reqMap.setReqMap(reqParamMap);
