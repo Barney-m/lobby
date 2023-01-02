@@ -3,7 +3,6 @@ package com.stx.centre.security.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jboss.logging.MDC;
 import org.slf4j.Logger;
@@ -15,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.stx.centre.security.UserContextUtil;
 import com.stx.centre.security.user.SystemUserContext;
 import com.stx.workshop.constant.RestConst;
-import com.stx.workshop.interceptor.LoggerInterceptor;
 
 @Component
 public class UserContextInterceptor implements HandlerInterceptor {
@@ -59,6 +57,7 @@ public class UserContextInterceptor implements HandlerInterceptor {
 	    
 	    // JBOSS Logging
 	    MDC.put("reqId", reqId);
+	    MDC.put("userId", userId);
 	    MDC.put("email", email);
 	    MDC.put("ipAddress", remoteAddr);
 	    MDC.put("uri", request.getRequestURI());

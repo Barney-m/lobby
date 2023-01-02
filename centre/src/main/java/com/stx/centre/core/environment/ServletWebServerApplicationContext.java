@@ -2,7 +2,6 @@ package com.stx.centre.core.environment;
 
 import org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.stereotype.Component;
 
 import com.stx.workshop.util.BaseEnvUtil;
 
